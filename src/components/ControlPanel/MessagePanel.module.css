@@ -1,0 +1,21 @@
+.messageHolder {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: center;
+  height: 100px;
+  width: 100%;
+}
+
+.textHolder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.textMessage {
+  font-size: 40px;
+  font-weight: bold;
+  color: rgb(238, 240, 240);
+  text-align: center;
+}

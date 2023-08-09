@@ -16,6 +16,7 @@ const GameFloor = ({ floorColor = "#8e9599", floorSize = 10, ...props }) => {
       position-y={-0.001}
       onPointerEnter={togglePointerOnFloor}
       onPointerLeave={togglePointerOnFloor}
+      receiveShadow
     >
       <planeGeometry args={[floorSize, floorSize]} />
       <meshStandardMaterial color={floorColor} />

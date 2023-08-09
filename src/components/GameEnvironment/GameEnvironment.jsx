@@ -1,9 +1,10 @@
 import GameFloor from "./GameFloor";
 //import AnimatedCoconut from "../GameAssets/AnimatedCoconut";
 import { Coconut } from "../GameAssets/Coconut";
+import Spotlight from "./Spotlight";
 import { useState, useEffect } from "react";
 
-const GameEnvironment = (props) => {
+const GameEnvironment = () => {
   const [coconutsList, setCoconutsList] = useState([]);
 
   useEffect(() => {
@@ -13,7 +14,31 @@ const GameEnvironment = (props) => {
 
   return (
     <>
-      <GameFloor floorColor={"#4d7a2b"} />
+      <GameFloor floorColor={"#879998"} />
+      <Spotlight
+        lightColor={"#cce012"}
+        position={[15, 2, 15]}
+        flashing={true}
+        intensity={0.4}
+        maxIntensity={1}
+        showHelper={false}
+      ></Spotlight>
+      <Spotlight
+        lightColor={"#f5f5f2"}
+        position={[-15, 2, -15]}
+        flashing={true}
+        intensity={0.4}
+        maxIntensity={1}
+        showHelper={false}
+      ></Spotlight>
+      <Spotlight
+        lightColor={"#13ede6"}
+        position={[-15, 2, 2]}
+        flashing={true}
+        intensity={0.4}
+        maxIntensity={1}
+        showHelper={false}
+      ></Spotlight>
       {coconutsList.map((c, index) => (
         <Coconut
           scale={0.5}

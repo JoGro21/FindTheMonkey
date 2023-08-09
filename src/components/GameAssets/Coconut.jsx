@@ -7,6 +7,8 @@ import React, { useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import { updateScoreAndTry } from "../../store/actions/scores-actions";
+import { useDispatch, useSelector } from "react-redux";
 
 export function Coconut(props) {
   const {
@@ -17,8 +19,18 @@ export function Coconut(props) {
     monkeyColor = "#b4c728",
   } = props;
 
+  const dispatch = useDispatch();
+
   const [isSplit, setIsSplit] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+
+  const currentScore = useSelector((state) => {
+    return state.scores.currentScore;
+  });
+
+  const gameActive = useSelector((state) => {
+    return state.scores.gameActive;
+  });
 
   const boxGeo = new THREE.BoxGeometry(0.6, 0.6, 0.6);
 
@@ -43,10 +55,14 @@ export function Coconut(props) {
 
   const endHoverEffectHandler = () => {
     setIsHovered(false);
+    if (gameActive) {
+      setIsSplit(false);
+    }
   };
 
   const openCoconutHandler = () => {
     setIsSplit(true);
+    dispatch(updateScoreAndTry(currentScore, hasMonkey));
   };
 
   const closeCoconutHandler = () => {
@@ -108,6 +124,7 @@ export function Coconut(props) {
           material={coconutMaterial}
           scale={2.695 * scale}
           ref={coconutBottomRefOut}
+          castShadow
         />
         <mesh
           geometry={nodes.BottomIn.geometry}
@@ -123,6 +140,7 @@ export function Coconut(props) {
           rotation={[0, 0, 3.136]}
           scale={2.695 * scale}
           ref={coconutTopRefOut}
+          castShadow
         />
         <mesh
           geometry={nodes.TopIn.geometry}
@@ -139,6 +157,7 @@ export function Coconut(props) {
           position={position}
           ref={monkeyRef}
           scale={scale}
+          castShadow
         >
           <meshStandardMaterial color={monkeyColor} />
         </mesh>
