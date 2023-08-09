@@ -5,6 +5,6 @@ The script creates 9 instances of the Coconut components. In one of the coconuts
 
 The Coconut component was created using npx GLTFJSX convertor. 
 
-Future improvements: 
-- adding a Game summary panel to display the user score
-- add a button to start a new game without refreshing the page
+Probably overkill, but I also added a store to manage the game state. I would have been fine just using useContext, but it is good practice for more complicated applications. 
+
+I have also added some custom light components.
